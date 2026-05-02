@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Security Guard | Frontend Protection System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .section h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .sensitive-data {
+            background: #ffeb3b;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #f0c000;
+            color: #333;
+            font-weight: 500;
+        }
+
+        input, button {
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            background: white;
+        }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #5a67d8;
+        }
+
+        .output-box {
+            margin-top: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            min-height: 60px;
+        }
+
+        .link-list {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .link-list a {
+            color: #667eea;
+            text-decoration: none;
+            padding: 8px 12px;
+            background: white;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            transition: all 0.3s;
+        }
+
+        .link-list a:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .feature-list li {
+            padding: 8px 0;
+            color: #555;
+            border-bottom: 1px solid #eee;
+        }
+
+        .feature-list li:before {
+            content: ">> ";
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+
+        footer {
+            background: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>Web Security Guard</h1>
+        <p>Frontend Security Protection System</p>
+    </div>
+
+    <div class="content">
+        <div class="section">
+            <h2>Security Status <span class="status-badge">ACTIVE</span></h2>
+            <p>This page is protected against XSS attacks, Clickjacking, console manipulation, and unauthorized copying.</p>
+        </div>
+
+        <div class="section">
+            <h2>Protected Content Area</h2>
+            <div class="sensitive-data">
+                CONFIDENTIAL: Security Code - X9K-42M-7WQ | Copying is disabled
+            </div>
+            <p>Right-click is disabled on this area and copy protection is active.</p>
+        </div>
+
+        <div class="section">
+            <h2>XSS Test Area</h2>
+            <input type="text" id="userInput" placeholder="Try injecting code like: <script>alert('hack')</script>">
+            <button onclick="displayUserInput()">Display Input</button>
+            <div class="output-box" id="output">
+                Your input will appear here (sanitized)
+            </div>
+            <p style="font-size: 12px; margin-top: 10px; color: #888;">Note: Script tags and dangerous attributes are automatically removed.</p>
+        </div>
+
+        <div class="section">
+            <h2>External Link Validation</h2>
+            <div class="link-list">
+                <a href="https://malicious-site-example.com" target="_blank">Suspicious Link (Requires Confirmation)</a>
+                <a href="https://google.com" target="_blank">Safe Link (Google)</a>
+                <a href="https://github.com" target="_blank">Safe Link (GitHub)</a>
+            </div>
+            <p style="font-size: 12px; margin-top: 10px; color: #888;">Suspicious domains will show a confirmation dialog before redirecting.</p>
+        </div>
+
+        <div class="section">
+            <h2>Active Security Features</h2>
+            <ul class="feature-list">
+                <li>XSS Protection - Input sanitization and DOM monitoring</li>
+                <li>Clickjacking Prevention - Page breaks out of iframes</li>
+                <li>Developer Tools Blocking - F12, Ctrl+Shift+I, Ctrl+U are disabled</li>
+                <li>Console Hijacking Protection</li>
+                <li>Content Copy Protection on sensitive areas</li>
+                <li>External Link Validation (Anti-Phishing)</li>
+                <li>DOM Mutation Monitoring</li>
+                <li>Basic CSP Header via meta tag</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        Web Security Guard v1.0 | This is a frontend protection layer only.<br>
+        For production use, always implement server-side validation and proper CSP headers.
+    </footer>
+</div>
+
+<script src="security-guard.js"></script>
+
+<script>
+    function displayUserInput() {
+        let userText = document.getElementById('userInput').value;
+        document.getElementById('output').innerHTML = "You entered: " + userText;
+        console.log("User input displayed: " + userText);
+    }
+</script>
+</body>
+</html>
